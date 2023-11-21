@@ -44,7 +44,7 @@ jobs:
         git commit -m "Increment version"
         git fetch
         git branch -a -r
-        git checkout remotes/main
+        git checkout origin/main
         git push --force
         
     - name: Publish
