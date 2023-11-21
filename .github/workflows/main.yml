@@ -37,6 +37,7 @@ jobs:
         echo "$new_version" > WebApi/version
     - name: Commit Version Increment
       run: |
+        git log
         git fetch
         git branch -a -r
         git status
