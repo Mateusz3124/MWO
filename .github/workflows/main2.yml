@@ -1,0 +1,29 @@
+name: Update file on PR merge
+on:
+  pull_request:
+    branches:
+      - main
+    types: closed
+
+jobs:
+  update_date:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Update version.txt
+        run: |
+            current_version=$(cat WebApi/version)
+            new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+            echo "$new_version" > WebApi/version
+      - name: Amend the last commit
+        run: |
+          git config --global user.email "gitbot@openrct2.org"
+          git config --global user.name "OpenRCT2 git bot"
+          git commit -a --amend --no-edit
+          git push --force
+          echo "Complete"
