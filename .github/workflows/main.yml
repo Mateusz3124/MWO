@@ -11,7 +11,9 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v2.1.0
@@ -35,17 +37,13 @@ jobs:
         current_version=$(cat WebApi/version)
         new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
         echo "$new_version" > WebApi/version
-    #- name: Commit Version Increment
-      #run: |
-        #git clone git@git.Mateusz3124:project/MWO.git
-        #cd MWO
-        #echo ../WebApi/version > WebApi/version
-        #git config user.name "${{ github.actor }}"
-        #git config user.email "${{ github.actor }}@users.noreply.github.com"
-        #git add WebApi/version
-        #git push -f origin
-        #cd ..
-        #rm -r MWO
+    - name: Commit Version Increment
+      run: |
+          git config --global user.email "gitbot@openrct2.org"
+          git config --global user.name "OpenRCT2 git bot"
+          git commit -a --amend --no-edit
+          git push --force-with-lease
+          echo "Complete"
         
     - name: Publish
       run: dotnet publish ./WebApi/WebApi.csproj -c Release -o ${{ env.DOTNET_ROOT }}/api
