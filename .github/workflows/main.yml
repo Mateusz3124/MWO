@@ -42,7 +42,8 @@ jobs:
         git config user.email "${{ github.actor }}@users.noreply.github.com"
         git add WebApi/version
         git commit -m "Increment version"
-        git push main --force
+        git checkout main
+        git push --force
         
     - name: Publish
       run: dotnet publish ./WebApi/WebApi.csproj -c Release -o ${{ env.DOTNET_ROOT }}/api
