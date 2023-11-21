@@ -2,7 +2,7 @@ name: CI
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -26,18 +26,23 @@ jobs:
 
     - name: Test
       run: dotnet test
+    - name: Data
+      run: |
+        cd WebApi
+        ls
     - name: Increment Version
       run: |
-        current_version=$(cat "version")
+        current_version=$(cat WebApi/version)
         new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
-        echo "$new_version" > "version"
+        echo "$new_version" > WebApi/version
     - name: Commit Version Increment
       run: |
+        git status
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor }}@users.noreply.github.com"
-        git add /WebApi/version
+        git add WebApi/version
         git commit -m "Increment version"
-        git push
+        git push main --force
         
     - name: Publish
       run: dotnet publish ./WebApi/WebApi.csproj -c Release -o ${{ env.DOTNET_ROOT }}/api
@@ -65,7 +70,6 @@ jobs:
       id: deploy-to-azure
       uses: Azure/webapps-deploy@v2
       with:
-        app-name: 'personsApi-dev'
         publish-profile: ${{ secrets.PUBLISH_PROFILE_DEV }}
 
   deploy-prod:
@@ -85,5 +89,4 @@ jobs:
       id: deploy-to-azure
       uses: Azure/webapps-deploy@v2
       with:
-        app-name: 'personsApi-prod'
         publish-profile: ${{ secrets.PUBLISH_PROFILE_PROD }}
