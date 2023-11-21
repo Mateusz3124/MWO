@@ -43,7 +43,7 @@ jobs:
         git add WebApi/version
         git commit -m "Increment version"
         gir remote add origin ${{ secrets.URL }}
-        git push
+        git push origin
         
     - name: Publish
       run: dotnet publish ./WebApi/WebApi.csproj -c Release -o ${{ env.DOTNET_ROOT }}/api
