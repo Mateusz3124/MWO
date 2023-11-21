@@ -40,7 +40,7 @@ jobs:
         cat WebApi/version
         git log
         git fetch
-        git reset --soft HEAD^
+        git reset --soft HEAD
         git branch -a -r
         git status
         git config user.name "${{ github.actor }}"
