@@ -17,7 +17,7 @@ try
     using (StreamReader reader = new StreamReader("version"))
     {
         string line = reader.ReadLine();
-        Console.WriteLine(line);
+        Console.WriteLine("The current version of app is:" + line);
     }
 }
 catch (IOException e)
