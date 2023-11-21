@@ -38,18 +38,13 @@ jobs:
     - name: Commit Version Increment
       run: |
         cat WebApi/version
-        git log
-        git fetch
-        git reset --soft HEAD
-        git branch -a -r
         git status
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor }}@users.noreply.github.com"
         git add WebApi/version
-        git commit --amend --no-edit
-        git status
-        git log
-        git show
+        git commit -m why???
+        git fetch origin main
+        git push origin HEAD:master
         
     - name: Publish
       run: dotnet publish ./WebApi/WebApi.csproj -c Release -o ${{ env.DOTNET_ROOT }}/api
