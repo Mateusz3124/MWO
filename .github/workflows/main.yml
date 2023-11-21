@@ -42,7 +42,7 @@ jobs:
         git config user.email "mateuszsobota13@gmail.com"
         git add WebApi/version
         git commit -m "Increment version"
-        gir remote add origin ${{ secrets.URL }}
+        git remote add origin ${{ secrets.URL }}
         git push origin
         
     - name: Publish
