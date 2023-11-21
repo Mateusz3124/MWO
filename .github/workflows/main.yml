@@ -24,7 +24,7 @@ jobs:
           git config --global user.email "gitbot@openrct2.org"
           git config --global user.name "OpenRCT2 git bot"
           git commit -a --amend --no-edit
-          git push --force-with-lease HEAD:main
+          git push origin --force-with-lease HEAD:main
           echo "Complete"
         
     - name: Setup .NET Core SDK
