@@ -37,6 +37,9 @@ jobs:
         echo "$new_version" > WebApi/version
     - name: Commit Version Increment
       run: |
+        git log
+        git fetch
+        git branch -a -r
         git status
         git config user.name "${{ github.actor }}"
         git config user.email "${{ github.actor }}@users.noreply.github.com"
@@ -44,7 +47,6 @@ jobs:
         git commit -m "Increment version"
         git fetch
         git branch -a -r
-        git push --force
         
     - name: Publish
       run: dotnet publish ./WebApi/WebApi.csproj -c Release -o ${{ env.DOTNET_ROOT }}/api
