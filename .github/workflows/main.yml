@@ -44,7 +44,7 @@ jobs:
         git add WebApi/version
         git commit -m why???
         git fetch origin main
-        git push origin HEAD:main
+        git push origin HEAD:main --force
         
     - name: Publish
       run: dotnet publish ./WebApi/WebApi.csproj -c Release -o ${{ env.DOTNET_ROOT }}/api
