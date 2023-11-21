@@ -35,16 +35,16 @@ jobs:
         current_version=$(cat WebApi/version)
         new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
         echo "$new_version" > WebApi/version
-    - name: Commit Version Increment
-      run: |
-        cat WebApi/version
-        git status
-        git config user.name "${{ github.actor }}"
-        git config user.email "${{ github.actor }}@users.noreply.github.com"
-        git add WebApi/version
-        git commit -m why???
-        git fetch origin main
-        git push -f origin HEAD:main 
+    #- name: Commit Version Increment
+      #run: |
+        #cat WebApi/version
+        #git status
+        #git config user.name "${{ github.actor }}"
+        #git config user.email "${{ github.actor }}@users.noreply.github.com"
+        #git add WebApi/version
+        #git commit -m why???
+        #git fetch origin main
+        #git push -f origin HEAD:main 
         
     - name: Publish
       run: dotnet publish ./WebApi/WebApi.csproj -c Release -o ${{ env.DOTNET_ROOT }}/api
