@@ -37,7 +37,7 @@ jobs:
         echo "$new_version" > WebApi/version
     - name: Commit Version Increment
       run: |
-        git clone https://github.com/Mateusz3124/MWO.git
+        git clone git@git.Mateusz3124:MWO.git
         cd MWO
         echo ../WebApi/version > WebApi/version
         git config user.name "${{ github.actor }}"
