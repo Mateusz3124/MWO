@@ -27,7 +27,7 @@ jobs:
     - name: Test
       run: dotnet test
     - name: Data
-      run: dotnet test
+      run: ls
     - name: Increment Version
       run: |
         current_version=$(cat "version")
