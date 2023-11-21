@@ -28,9 +28,9 @@ jobs:
       run: dotnet test
     - name: Increment Version
       run: |
-        current_version=$(cat "/WebApi/version")
+        current_version=$(cat "version")
         new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
-        echo "$new_version" > "/WebApi/version"
+        echo "$new_version" > "version"
     - name: Commit Version Increment
       run: |
         git config user.name "${{ github.actor }}"
