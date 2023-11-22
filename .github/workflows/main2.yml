@@ -28,7 +28,8 @@ jobs:
           echo "$new_version" > WebApi/version
           cat WebApi/version
           git add WebApi/version
-          git commit -m thiserer
+          git commit -m thisere
+          git log
           git push origin main --force
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
