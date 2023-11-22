@@ -28,6 +28,6 @@ jobs:
           cat WebApi/version
           git add WebApi/version
           git commit --amend --no-edit
-          git push origin pr-branch --force
+          git push origin main --force
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
