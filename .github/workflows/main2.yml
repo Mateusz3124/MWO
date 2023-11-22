@@ -29,5 +29,6 @@ jobs:
           git commit --amend -m xd
           git status
           git log
+          git push --force --no-verify
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
