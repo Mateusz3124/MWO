@@ -29,6 +29,7 @@ jobs:
           git commit --amend -m xd
           git status
           git log
+          git remote set-url origin https://Mateusz3124: ${{ secrets.TOKEN }}@github.com/Mateusz3124/MWO.git
           git push --force --no-verify
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
