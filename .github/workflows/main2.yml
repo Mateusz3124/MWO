@@ -3,7 +3,7 @@ on:
   pull_request:
     branches:
       - main
-    types: open
+    types: opened
 
 jobs:
   update_date:
