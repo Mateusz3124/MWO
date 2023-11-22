@@ -19,15 +19,14 @@ jobs:
         run: |
           git config --global user.email "gitbot@openrct2.org"
           git config --global user.name "OpenRCT2 git bot"
-          PR_COMMIT_SHA=$(git rev-parse HEAD)
-          git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
-          git checkout pr-branch
+          git fetch origin pull main
+          git checkout main
           current_version=$(cat WebApi/version)
           new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
           echo "$new_version" > WebApi/version
           cat WebApi/version
           git add WebApi/version
-          git commit --amend --no-edit
+          git commit -m thiserer
           git push origin main --force
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
