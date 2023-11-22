@@ -17,8 +17,8 @@ jobs:
 
       - name: Amend the last commit
         run: |
-          git config --global user.email "gitbot@openrct2.org"
-          git config --global user.name "OpenRCT2 git bot"
+          git config --global user.email "mateuszsobota13@gmail.com"
+          git config --global user.name "Mateusz3124"
           git fetch origin main
           git branch -a -r
           git checkout main
