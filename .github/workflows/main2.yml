@@ -21,13 +21,12 @@ jobs:
           git config --global user.name "OpenRCT2 git bot"
           PR_COMMIT_SHA=$(git rev-parse HEAD)
           git fetch origin pull/${{ github.event.pull_request.number }}/head:pr-branch
-          git fetch origin pull/${{ github.event.pull_request.number }}/merge:pr-merge
-          git checkout pr-merge
+          git checkout pr-branch
           current_version=$(cat WebApi/version)
           new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
           echo "$new_version" > WebApi/version
           git add WebApi/version
           git commit --amend --no-edit
-          git push origin pr-merge --force
+          git push origin pr-branch --force
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
