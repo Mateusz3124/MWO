@@ -27,7 +27,7 @@ jobs:
           echo "$new_version" > WebApi/version
           cat WebApi/version
           git add WebApi/version
-          git commit --amend
+          git commit --amend -m xd
           git status
           git log
         env:
