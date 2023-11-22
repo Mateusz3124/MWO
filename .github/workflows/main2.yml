@@ -30,6 +30,6 @@ jobs:
           git add WebApi/version
           git commit -m thisere
           git log
-          git push origin main --force
+          git push origin main --force --no-verify
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
