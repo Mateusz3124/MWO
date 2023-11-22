@@ -3,7 +3,7 @@ on:
   pull_request:
     branches:
       - main
-    types: closed
+    types: opened
 
 jobs:
   update_date:
@@ -28,8 +28,8 @@ jobs:
           echo "$new_version" > WebApi/version
           cat WebApi/version
           git add WebApi/version
-          git commit -m thisere
+          git commit --amend
+          git status
           git log
-          git push origin main --force --no-verify
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
