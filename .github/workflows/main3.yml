@@ -19,4 +19,5 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v5
         with: 
           commit_options: '--no-verify --signoff'
+          push_options: '--force'
         
