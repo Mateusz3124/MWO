@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:      
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ckeckout
+        uses: actions/checkout@v3
+      - name: Amend the last commit
+        run: |
+          current_version=$(cat WebApi/version)
+          new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+          echo "$new_version" > WebApi/version
+          cat WebApi/version
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        
