@@ -12,14 +12,7 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-    - name: Amend the last commit
-      run: |
-          current_version=$(cat WebApi/version)
-          new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
-          echo "$new_version" > WebApi/version
-          cat WebApi/version
-    - uses: stefanzweifel/git-auto-commit-action@v5
-        
+      
     - name: Setup .NET Core SDK
       uses: actions/setup-dotnet@v2.1.0
       with:
