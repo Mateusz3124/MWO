@@ -17,4 +17,6 @@ jobs:
           echo "$new_version" > WebApi/version
           cat WebApi/version
       - uses: stefanzweifel/git-auto-commit-action@v5
+        with: 
+          commit_options: '--no-verify --signoff'
         
