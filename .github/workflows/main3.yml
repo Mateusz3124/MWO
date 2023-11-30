@@ -23,7 +23,7 @@ jobs:
         run: |
           current_version=$(cat WebApi/version)
           new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
-          echo "xd" > WebApi/version
+          echo ${{ github.run_number }} > WebApi/version
           cat WebApi/version
           git config --global user.email "mateuszsobota13@gmail.com"
           git config --global user.name "Mateusz3124"
