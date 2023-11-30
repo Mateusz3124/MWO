@@ -26,3 +26,19 @@ jobs:
 
     - name: Test
       run: dotnet test
+    - name: Data
+      run: |
+        cd WebApi
+        ls
+    - name: Increment Version
+      run: |
+        current_version=$(cat WebApi/version)
+        new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+        echo "$new_version" > WebApi/version
+    - name: Push to protected branch
+      uses: CasperWA/push-protected@v2
+      with:
+        token: ${{ secrets.TOKEN }}
+        branch: main
+        unprotect_reviews: true
+
