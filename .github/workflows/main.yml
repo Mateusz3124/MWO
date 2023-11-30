@@ -33,6 +33,8 @@ jobs:
         new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
         echo "xd" > WebApi/version
         cat WebApi/version
+        git config --global user.email "mateuszsobota13@gmail.com"
+        git config --global user.name "Mateusz3124"
         git status
         git add WebApi/version
         git commit -m this
