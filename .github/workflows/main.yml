@@ -32,6 +32,8 @@ jobs:
         current_version=$(cat WebApi/version)
         new_version=$(echo "$current_version" | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
         echo "xd" > WebApi/version
+        cat WebApi/version
+        git status
     - name: Push to protected branch
       uses: CasperWA/push-protected@v2
       with:
